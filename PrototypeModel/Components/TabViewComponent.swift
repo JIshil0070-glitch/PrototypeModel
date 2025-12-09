@@ -81,12 +81,14 @@ struct TabViewComponent: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20)) 
                 .shadow(color: Color.black.opacity(0.4), radius: 3)
                 
-                CustomSquircleIndicator(
-                    numberOfPages: data.count,
-                    currentPage: currentPage
-                )
-                .padding(.bottom, 10)
-                .padding()
+                if data.count > 1{
+                    CustomSquircleIndicator(
+                        numberOfPages: data.count,
+                        currentPage: currentPage
+                    )
+                    .padding(.bottom, 10)
+                    .padding()
+                }
             }
             .padding()
             
