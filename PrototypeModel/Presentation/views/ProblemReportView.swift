@@ -29,11 +29,11 @@ struct ProblemReportView: View {
                     titleRatio: 279/48,
                     titlePadding: 24,
                     descriptionRatio: 279/66,
-                    descriptionPadding: 14,
+                    descriptionPadding: 24,
+                    imagePaddingTop: 50,
                     data: Page.problemReportPages)
-                .padding(.bottom, 250)
+                .padding(.bottom, 260)
                 
-                Spacer()
                 Divider()
                 buttonComponent(
                     isPresented: $showNextPage,

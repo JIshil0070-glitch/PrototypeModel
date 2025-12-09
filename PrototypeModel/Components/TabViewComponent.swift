@@ -17,6 +17,7 @@ struct TabViewComponent: View {
     var titlePadding:CGFloat
     var descriptionRatio:CGFloat
     var descriptionPadding:CGFloat
+    var imagePaddingTop:CGFloat
 
     
     var tabSize : SizeElements {
@@ -48,15 +49,18 @@ struct TabViewComponent: View {
                                 .frame(width: imageSize.requiredWidth(),
                                        height: imageSize.requiredHeight())
                                 .clipped()
-                                .padding(.top,20)
+                                .padding(.top,imagePaddingTop)
                             Rectangle()
                                 .fill(Color.clear)
                                 .frame(width: titleFrame.requiredWidth(),
                                        height: titleFrame.requiredHeight())
                                 .overlay {
-                                    Text(data[index].title)
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundStyle(Color.black.opacity(0.8))
+                                    HStack {
+                                        Text(data[index].title)
+                                            .font(.system(size: 20, weight: .bold))
+                                            .foregroundStyle(Color.black.opacity(0.8))
+                                            .multilineTextAlignment(.center)
+                                    }
                                 }
                             Rectangle()
                                 .fill(Color.clear)
@@ -67,9 +71,7 @@ struct TabViewComponent: View {
                                         .font(.system(size: 16, weight: .regular))
                                         .foregroundStyle(Color.black.opacity(0.9))
                                         .padding(.horizontal, descriptionFrame.padding)
-                                        .lineSpacing(3)
                                 }
-                            
                             Spacer()
                         }
                     }
@@ -108,6 +110,7 @@ struct TabViewComponent: View {
         titlePadding:24 ,
         descriptionRatio: 279/88,
         descriptionPadding: 24,
+        imagePaddingTop: 20,
         data: Page.processPages
     )
 }
