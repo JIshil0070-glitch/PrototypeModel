@@ -30,7 +30,7 @@ struct ContentView: View {
                     Divider()
                         buttonComponent(
                             isPresented: $showSecondView,
-                            buttonColor: .button,
+                            buttonColor: .green,
                             buttonTitle: "Next",
                             buttonTitleColor: .white,
                             buttonTitleSize: 16,
