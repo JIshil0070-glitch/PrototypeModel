@@ -9,6 +9,17 @@ import SwiftUI
 
 struct ProblemReportSendView: View {
     
+    fileprivate func buttonLabel(_ button: Bool,_ text: String) -> some View {
+        HStack(spacing: 15){
+            Image(systemName : button ? "largecircle.fill.circle" : "circle")
+                .font(.system(size: 25))
+                .foregroundColor(button ? Color.blue : Color.gray)
+            Text(text)
+                .foregroundStyle(Color.black)
+                .font(.system(size: 16))
+        }
+    }
+    
     fileprivate func createFrame(_ ratio: CGFloat) -> some View {
         let frameSize = SizeElements(screeRatio: ratio, padding: 20)
         return Rectangle()
@@ -16,77 +27,100 @@ struct ProblemReportSendView: View {
             .frame(width: frameSize.requiredWidth(),
                    height: frameSize.requiredHeight())
     }
-
+    @State private var content: String = "Please enter yout Content"
+    @State private var buttonOne : Bool = false
+    @State private var buttonTwo : Bool = false
     
     var body: some View {
-        VStack(spacing: 5) {
-            NavigationBarComponent(
-                title: "Problem Report",
-                backButtonStyle: "chevron.left",
-                backButtonName: nil,
-                optioButtonName: nil,
-                optionButtonStyle: nil
-            )
-            createFrame(327/22)
-                .overlay {
-                    HStack {
-                        Text("What kind of problem is occurring?")
-                            .font(.system(size: 16, weight: .semibold))
-                        Spacer()
+        ZStack {
+            VStack(spacing: 5) {
+                NavigationBarComponent(
+                    title: "Problem Report",
+                    backButtonStyle: "chevron.left",
+                    backButtonName: nil,
+                    optioButtonName: nil,
+                    optionButtonStyle: nil
+                )
+                createFrame(327/22)
+                    .overlay {
+                        HStack {
+                            Text("What kind of problem is occurring?")
+                                .font(.system(size: 16, weight: .semibold))
+                            Spacer()
+                        }
                     }
-                }
-                .padding(.top, 20)
-            createFrame(327/20)
-                .overlay {
-                    HStack {
-                        Text("Please select an item")
-                            .font(.system(size: 14, weight: .regular))
-                        Spacer()
+                    .padding(.top, 20)
+                createFrame(327/20)
+                    .overlay {
+                        HStack {
+                            Text("Please select an item")
+                                .font(.system(size: 14, weight: .regular))
+                            Spacer()
+                        }
+                        
                     }
-                    
-                }
-                .padding(.bottom,20)
-            createFrame(327/124)
-                .cornerRadius(10)
-                .shadow(color:.gray.opacity(0.8),radius: 5)
-                .overlay {
-                    HStack {
-                        Button(action: {
-                            
-                        }, label: {
-                            
-                        })
+                    .padding(.bottom,20)
+                createFrame(327/114)
+                    .cornerRadius(10)
+                    .shadow(color:.gray.opacity(0.8),radius: 3)
+                    .overlay {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Button(action: {
+                                buttonOne.toggle()
+                            }) {
+                                buttonLabel(buttonOne, "Report quality issues")
+                            }
+                            .padding(.horizontal)
+
+                            Divider()
+                                .frame(width: 300,height:1)
+                                .background(Color.gray.opacity(0.5))
+
+                            Button(action: {
+                                buttonTwo.toggle()
+                            }) {
+                                buttonLabel(buttonTwo, "Other")
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding(.vertical)
                     }
-                }
-                .padding(.bottom,50)
-            createFrame(327/20)
-                .overlay {
-                    HStack {
-                        Text("Inquiry Details")
-                            .font(.system(size: 16, weight: .semibold))
-                        Spacer()
+                    .padding(.bottom,30)
+                createFrame(327/20)
+                    .overlay {
+                        HStack {
+                            Text("Inquiry Details")
+                                .font(.system(size: 16, weight: .semibold))
+                            Spacer()
+                        }
                     }
-                }
-            createFrame(327/188)
-                .overlay {
-                    
-                }
-            Spacer()
-            Divider()
-            buttonComponent(
-                isPresented: .constant(false),
-                buttonColor: .button,
-                buttonTitle: "Send",
-                buttonTitleColor: .white,
-                buttonTitleSize: 20,
-                buttonIconLeft: nil,
-                buttonIconRight: "chevron.right",
-                buttonIconsColor: .white,
-                buttonIconsSize: 16,
-                iconWeight: .regular,
-                itemsSpacing: 3)
+                    .padding(.vertical,25)
+                createFrame(327/188)
+                    .overlay {
+                        TextEditor(text: $content)
+                            .foregroundStyle(Color.black.opacity(0.5))
+                            .padding()
+                    }
+                    .cornerRadius(8)
+                    .shadow(color:.gray.opacity(0.6),radius: 2)
+                Spacer()
+                Divider()
+                buttonComponent(
+                    isPresented: .constant(false),
+                    buttonColor: .button,
+                    buttonTitle: "Send",
+                    buttonTitleColor: .white,
+                    buttonTitleSize: 20,
+                    buttonIconLeft: nil,
+                    buttonIconRight: "chevron.right",
+                    buttonIconsColor: .white,
+                    buttonIconsSize: 16,
+                    iconWeight: .regular,
+                    itemsSpacing: 3
+                )
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
