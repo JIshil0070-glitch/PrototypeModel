@@ -15,7 +15,7 @@ struct SampleView: View {
             NavigationBarComponent(
                 title: "Sample View",
                 backButtonStyle: nil,
-                backButtonName: "back",
+                backButtonName: "back button",
                 optioButtonName: nil,
                 optionButtonStyle: nil)
         }
