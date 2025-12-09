@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct secondView: View {
+    
+    @State var showProblemReportView: Bool = false
+    
     var body: some View {
+        
         NavigationStack {
             VStack{
                 NavigationBarComponent(
@@ -32,7 +36,7 @@ struct secondView: View {
                 Spacer()
                 ZStack {
                     buttonComponent(
-                        isPresented: .constant(false),
+                        isPresented: $showProblemReportView,
                         buttonColor: .button,
                         buttonTitle: "Lets get Started",
                         buttonTitleColor: .white,
@@ -47,6 +51,9 @@ struct secondView: View {
                 }
             }
             .navigationBarHidden(true)
+            .navigationDestination(isPresented: $showProblemReportView, destination:{
+                ProblemReportView()
+            })
         }
     }
 }
