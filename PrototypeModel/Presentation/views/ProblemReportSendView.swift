@@ -10,14 +10,14 @@ import SwiftUI
 struct ProblemReportSendView: View {
     
     fileprivate func customButton(_ mainButton: Binding<Bool>,_ secondaryButton: Binding<Bool>,_ text: String)-> some View{
-        HStack {
+        HStack(spacing: -5) {
             Button(action: {
                 if !mainButton.wrappedValue {
                     mainButton.wrappedValue = true
                     secondaryButton.wrappedValue = false
                 }
             }) {
-                HStack(spacing: 15){
+                HStack {
                     Image(systemName : mainButton.wrappedValue ? "largecircle.fill.circle" : "circle")
                         .font(.system(size: 25))
                         .foregroundColor(mainButton.wrappedValue ? Color.blue : Color.gray)
@@ -25,12 +25,11 @@ struct ProblemReportSendView: View {
             }
             Text(text)
                 .foregroundStyle(Color.black)
-                .font(.system(size: 16))
+                .font(.system(size: 17))
             .padding(.horizontal)
 
         }
     }
-    
     
     fileprivate func createFrame(_ ratio: CGFloat) -> some View {
         let frameSize = SizeElements(screeRatio: ratio, padding: 20)
@@ -39,7 +38,8 @@ struct ProblemReportSendView: View {
             .frame(width: frameSize.requiredWidth(),
                    height: frameSize.requiredHeight())
     }
-    @State private var content: String = "Please enter yout Content"
+    @State private var content: String = ""
+    @State private var contentplaceholder: String = "Please enter your Content"
     @State  var buttonOne : Bool = false
     @State  var buttonTwo : Bool = false
     
@@ -66,6 +66,7 @@ struct ProblemReportSendView: View {
                     .overlay {
                         HStack {
                             Text("Please select an item")
+                                .foregroundStyle(Color.gray)
                                 .font(.system(size: 14, weight: .regular))
                             Spacer()
                         }
@@ -97,9 +98,13 @@ struct ProblemReportSendView: View {
                     .padding(.vertical,25)
                 createFrame(327/188)
                     .overlay {
-                        TextEditor(text: $content)
-                            .foregroundStyle(Color.black.opacity(0.5))
-                            .padding()
+                        ZStack {
+                            TextEditor(text: $content)
+                                .padding()
+                            Text(content.isEmpty ? contentplaceholder : "")
+                                .foregroundStyle(Color.black.opacity(0.5))
+                                .offset(x:-63,y:-68)
+                        }
                     }
                     .cornerRadius(8)
                     .shadow(color:.gray.opacity(0.6),radius: 2)
