@@ -10,14 +10,14 @@ import SwiftUI
 struct ProblemReportSendView: View {
     
     fileprivate func customButton(_ mainButton: Binding<Bool>,_ secondaryButton: Binding<Bool>,_ text: String)-> some View{
-        HStack {
+        HStack(spacing: -5) {
             Button(action: {
                 if !mainButton.wrappedValue {
                     mainButton.wrappedValue = true
                     secondaryButton.wrappedValue = false
                 }
             }) {
-                HStack(spacing: 15){
+                HStack {
                     Image(systemName : mainButton.wrappedValue ? "largecircle.fill.circle" : "circle")
                         .font(.system(size: 25))
                         .foregroundColor(mainButton.wrappedValue ? Color.blue : Color.gray)
@@ -25,12 +25,11 @@ struct ProblemReportSendView: View {
             }
             Text(text)
                 .foregroundStyle(Color.black)
-                .font(.system(size: 16))
+                .font(.system(size: 17))
             .padding(.horizontal)
 
         }
     }
-    
     
     fileprivate func createFrame(_ ratio: CGFloat) -> some View {
         let frameSize = SizeElements(screeRatio: ratio, padding: 20)
@@ -66,6 +65,7 @@ struct ProblemReportSendView: View {
                     .overlay {
                         HStack {
                             Text("Please select an item")
+                                .foregroundStyle(Color.gray)
                                 .font(.system(size: 14, weight: .regular))
                             Spacer()
                         }
