@@ -38,7 +38,8 @@ struct ProblemReportSendView: View {
             .frame(width: frameSize.requiredWidth(),
                    height: frameSize.requiredHeight())
     }
-    @State private var content: String = "Please enter yout Content"
+    @State private var content: String = ""
+    @State private var contentplaceholder: String = "Please enter your Content"
     @State  var buttonOne : Bool = false
     @State  var buttonTwo : Bool = false
     
@@ -97,9 +98,13 @@ struct ProblemReportSendView: View {
                     .padding(.vertical,25)
                 createFrame(327/188)
                     .overlay {
-                        TextEditor(text: $content)
-                            .foregroundStyle(Color.black.opacity(0.5))
-                            .padding()
+                        ZStack {
+                            TextEditor(text: $content)
+                                .padding()
+                            Text(content.isEmpty ? contentplaceholder : "")
+                                .foregroundStyle(Color.black.opacity(0.5))
+                                .offset(x:-63,y:-68)
+                        }
                     }
                     .cornerRadius(8)
                     .shadow(color:.gray.opacity(0.6),radius: 2)
