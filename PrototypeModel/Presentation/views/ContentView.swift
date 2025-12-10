@@ -24,6 +24,7 @@ struct ContentView: View {
                         titlePadding:24 ,
                         descriptionRatio: 279/88,
                         descriptionPadding: 24,
+                        imagePaddingTop: 20,
                         data: Page.processPages
                     )
                     Spacer()

@@ -31,6 +31,7 @@ struct secondView: View {
                     titlePadding:24 ,
                     descriptionRatio: 279/110,
                     descriptionPadding: 24,
+                    imagePaddingTop: 20,
                     data: Page.printOrderPages
                 )
                 Spacer()

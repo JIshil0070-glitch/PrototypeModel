@@ -49,6 +49,6 @@ extension Page{
     ]
   
     static var problemReportPages: [Page] = [
-        Page(id: UUID(), image: "Report", title: "We have received your report.", description: "Thank you for your cooperation. We look forward to your continued support of Micteys.")
+        Page(id: UUID(), image: "Report", title: "We have received\nyour report.", description: "Thank you for your cooperation.\nWe look forward to your continued\nsupport of Micteys.")
     ]
 }
