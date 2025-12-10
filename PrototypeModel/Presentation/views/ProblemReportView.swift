@@ -32,7 +32,7 @@ struct ProblemReportView: View {
                     descriptionPadding: 24,
                     imagePaddingTop: 50,
                     data: Page.problemReportPages)
-                .padding(.bottom, 260)
+                .padding(.bottom, 250)
                 
                 Divider()
                 buttonComponent(
