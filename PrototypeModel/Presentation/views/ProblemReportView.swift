@@ -50,6 +50,9 @@ struct ProblemReportView: View {
                 )
             }
             .navigationBarHidden(true)
+            .navigationDestination(isPresented: $showNextPage, destination: {
+                ContentView()
+            })
         }
     }
 }
