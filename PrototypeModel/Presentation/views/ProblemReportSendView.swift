@@ -9,16 +9,28 @@ import SwiftUI
 
 struct ProblemReportSendView: View {
     
-    fileprivate func buttonLabel(_ button: Bool,_ text: String) -> some View {
-        HStack(spacing: 15){
-            Image(systemName : button ? "largecircle.fill.circle" : "circle")
-                .font(.system(size: 25))
-                .foregroundColor(button ? Color.blue : Color.gray)
+    fileprivate func customButton(_ mainButton: Binding<Bool>,_ secondaryButton: Binding<Bool>,_ text: String)-> some View{
+        HStack {
+            Button(action: {
+                if !mainButton.wrappedValue {
+                    mainButton.wrappedValue = true
+                    secondaryButton.wrappedValue = false
+                }
+            }) {
+                HStack(spacing: 15){
+                    Image(systemName : mainButton.wrappedValue ? "largecircle.fill.circle" : "circle")
+                        .font(.system(size: 25))
+                        .foregroundColor(mainButton.wrappedValue ? Color.blue : Color.gray)
+                }
+            }
             Text(text)
                 .foregroundStyle(Color.black)
                 .font(.system(size: 16))
+            .padding(.horizontal)
+
         }
     }
+    
     
     fileprivate func createFrame(_ ratio: CGFloat) -> some View {
         let frameSize = SizeElements(screeRatio: ratio, padding: 20)
@@ -28,8 +40,8 @@ struct ProblemReportSendView: View {
                    height: frameSize.requiredHeight())
     }
     @State private var content: String = "Please enter yout Content"
-    @State private var buttonOne : Bool = false
-    @State private var buttonTwo : Bool = false
+    @State  var buttonOne : Bool = false
+    @State  var buttonTwo : Bool = false
     
     var body: some View {
         ZStack {
@@ -65,23 +77,11 @@ struct ProblemReportSendView: View {
                     .shadow(color:.gray.opacity(0.8),radius: 3)
                     .overlay {
                         VStack(alignment: .leading, spacing: 16) {
-                            Button(action: {
-                                buttonOne.toggle()
-                            }) {
-                                buttonLabel(buttonOne, "Report quality issues")
-                            }
-                            .padding(.horizontal)
-
+                           customButton($buttonOne,$buttonTwo, "Report quality issues")
                             Divider()
                                 .frame(width: 300,height:1)
-                                .background(Color.gray.opacity(0.5))
-
-                            Button(action: {
-                                buttonTwo.toggle()
-                            }) {
-                                buttonLabel(buttonTwo, "Other")
-                            }
-                            .padding(.horizontal)
+                                .background(Color.gray.opacity(0.1))
+                          customButton($buttonTwo,$buttonOne,"Other")
                         }
                         .padding(.vertical)
                     }
