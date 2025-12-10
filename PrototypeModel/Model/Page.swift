@@ -26,19 +26,19 @@ extension Page{
                 id: UUID(),
                 image: "ImageSelection",
                 title: "Image Selection",
-                description: "Import yout favorite images from your smartphone Photos or pintrest to create your very own orginal Stickers!"
+                description: "Import your favorite images from your smartphone Photos or pinterest to create your very own orginal Stickers!"
             ),
             Page(
                 id: UUID(),
                 image: "Cropping",
                 title: "Cropping",
-                description: "The app Automaticly crops the images. You can manually adjust the crop to your liking utill you're satisfied."
+                description: "The app Automatically crops the images. You can manually adjust the crop to your liking until you are satisfied."
             ),
             Page(
                 id: UUID(),
-                image: "College",
-                title: "College",
-                description: "Once you have a sticker image, try creating a sticker College! You can adjust the position, angle, and size of each sticker induvidually as many time as you like."
+                image: "Collage",
+                title: "Collage",
+                description: "Once you have a sticker image, try creating a sticker Collage! You can adjust the position, angle, and size of each sticker individually as many time as you like."
             )
     ]
     
