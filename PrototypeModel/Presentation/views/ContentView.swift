@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                VStack {
+                VStack { 
                     NavigationBarComponent(
                         title: "Help / User Manual",
                         backButtonStyle: "chevron.left",
