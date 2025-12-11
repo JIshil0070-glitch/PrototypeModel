@@ -53,7 +53,7 @@ struct secondView: View {
             }
             .navigationBarHidden(true)
             .navigationDestination(isPresented: $showProblemReportView, destination:{
-                ProblemReportView()
+                ProblemReportSendView()
             })
         }
     }
