@@ -44,7 +44,7 @@ struct ContentView: View {
                         )
                 }
             }
-            .navigationBarBackButtonHidden(false)
+            .navigationBarHidden(true)
             .navigationDestination(isPresented: $showSecondView, destination: {
                 secondView()
             })
